@@ -13,99 +13,100 @@ Dieses Projekt simuliert einen einfachen Pentest-Workflow und dient als Portfoli
 - ⚠️ Risikobewertung (Low / Medium / High / Critical)  
 - 🎯 Priorisierung von Angriffszielen (Top Targets)  
 - 💣 Pentest-Hinweise für nächste Schritte  
-- 🤖 KI-gestützte Erklärungen pro Finding  
+- 🤖 KI-gestützte Erklärungen (lokal über Ollama)  
 - 📄 Automatische Erstellung eines strukturierten Reports  
 
 ---
 
-## Demo
+## Voraussetzungen
 
-### CLI Nutzung
+- Python 3.x  
+- Nmap  
+- Ollama (für KI-Funktion)  
 
-![CLI](docs/images/cli.png)
-
----
-
-### Report Beispiel
-
-![Report](docs/images/report.png)
+Ollama Download: https://ollama.com
 
 ---
 
-### Projektstruktur
+## Installation
 
-![Structure](docs/images/structure.png)
+Repository klonen:
 
----
+git clone https://github.com/svenschult/mini-mythos-pentest-assistant.git
+cd mini-mythos-pentest-assistant
 
-## Projektstruktur (Übersicht)
+Abhängigkeiten installieren:
 
-mini-mythos-pentest-assistant
+pip install -r requirements.txt
 
--src/        → Kernlogik (Parser, Analyse, KI)
--scans/      → Eingabedateien (Nmap Scans)
--reports/    → Generierte Reports
--docs/       → Dokumentation & Screenshots
--README.md
--requirements.txt
--.gitignore
+Ollama starten und Modell laden:
+
+ollama run llama3
 
 ---
 
 ## Nutzung
 
-1. Nmap-Scan erstellen (z. B. in Kali Linux):
+1. Nmap-Scan erstellen:
 
 nmap -sV -O -oN scan.txt <ZIEL-IP>
 
-2. Scan-Datei in den Ordner `scans/` kopieren  
+2. Scan-Datei in den Ordner scans/ kopieren  
 
 3. Tool starten:
 
 python src/main.py
 
-4. Datei auswählen → Report wird automatisch erstellt  
+4. Datei auswählen → Report wird erstellt  
+
+---
+
+## Projektstruktur
+
+mini-mythos-pentest-assistant
+│
+├── src/        → Kernlogik (Parser, Analyse, KI)
+├── scans/      → Eingabedateien
+├── reports/    → Ergebnisse
+├── docs/       → Dokumentation
+│
+├── README.md
+├── requirements.txt
+└── .gitignore
+
+---
+
+## KI-Funktion
+
+Das Tool nutzt ein lokales KI-Modell über Ollama.
+
+Die KI:
+- analysiert Services
+- gibt Pentest-Einschätzungen
+- schlägt nächste Schritte vor
 
 ---
 
 ## Beispiel Output
 
-Das Tool erkennt und bewertet typische Dienste:
+- FTP → Critical → möglicher Exploit  
+- HTTP → High → Webanalyse starten  
+- SSH → Medium → Passwortprüfung  
 
-- **FTP** → Critical → möglicher Exploit / unsicherer Dienst  
-- **HTTP** → High → Einstiegspunkt für Webanalyse  
-- **SSH** → Medium → Passwort- und Konfigurationsprüfung  
-- **MySQL** → High → Datenbankzugriff prüfen  
-
-Zusätzlich liefert das Tool:
-
-- konkrete Pentest-Hinweise  
-- Priorisierung (Top Targets)  
-- verständliche KI-Erklärungen  
-
----
-
-## Ziel des Projekts
-
-Dieses Projekt zeigt:
-
-- praktische Python-Kenntnisse  
-- Verständnis für IT-Security / Pentesting  
-- strukturierte Analyse von Scan-Daten  
-- erste Integration von KI-Logik  
+Zusätzlich:
+- Priorisierung (Top Targets)
+- KI-Erklärungen
 
 ---
 
 ## Roadmap
 
-- [x] Nmap Parser  
-- [x] Analyse-Modul  
-- [x] CLI-Auswahl  
-- [x] Priorisierung von Zielen  
-- [x] KI-Erklärungsmodul  
-- [ ] Integration echter LLMs (z. B. Ollama)  
-- [ ] Automatisierter Nmap-Scan  
-- [ ] Web-Interface  
+- [x] Parser  
+- [x] Analyse  
+- [x] CLI  
+- [x] KI-Modul  
+- [ ] Web UI  
+- [ ] automatischer Scan  
 
 ---
 
@@ -113,19 +114,19 @@ Dieses Projekt zeigt:
 
 - Python  
 - Nmap  
-- CLI (Command Line Interface)  
-- Grundlegende KI-Logik  
+- Ollama  
+- Requests  
 
 ---
 
 ## Autor
 
-Sven Schult  
+Sven Schult 
 
 ---
 
 ## Hinweis
 
-Dieses Tool dient ausschließlich zu Lern- und Demonstrationszwecken in einer kontrollierten Umgebung (z. B. Lab mit Metasploitable).
+Dieses Tool dient ausschließlich zu Lern- und Demonstrationszwecken in einer kontrollierten Umgebung.
 
 Keine Nutzung gegen fremde Systeme ohne Erlaubnis.

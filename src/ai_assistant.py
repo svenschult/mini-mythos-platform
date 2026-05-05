@@ -1,43 +1,34 @@
+import requests
+
+
 def generate_ai_explanation(finding):
-    service = finding["service"].lower()
-    risk = finding["risk"]
-    priority = finding["priority"]
+    prompt = f"""
+Du bist ein Pentester.
 
-    explanation = f"Der Dienst {service} wurde als Risiko {risk} mit Priorität {priority} bewertet. "
+Analysiere diesen Service:
 
-    if service == "ftp":
-        explanation += (
-            "FTP ist häufig kritisch, weil Zugangsdaten im Klartext übertragen werden können. "
-            "In einem Lab sollte geprüft werden, ob anonymer Zugriff oder schwache Zugangsdaten möglich sind."
-        )
+Service: {finding['service']}
+Port: {finding['port']}
+Version: {finding['version']}
+Risiko: {finding['risk']}
 
-    elif service == "ssh":
-        explanation += (
-            "SSH ist grundsätzlich legitim, sollte aber gehärtet sein. "
-            "Wichtig sind starke Passwörter, deaktivierter Root-Login und aktuelle Versionen."
-        )
+Gib eine kurze Einschätzung und nächsten Schritte.
+Antworte in maximal 3 kurzen sätzen bitte auf deutsch.
+"""
 
-    elif service in ["http", "https"]:
-        explanation += (
-            "Webdienste sind oft ein guter Einstiegspunkt für weitere Prüfungen. "
-            "Typische nächste Schritte sind Verzeichnisprüfung, Login-Bereiche und Versionsanalyse."
-        )
+    try:
+        response = requests.post(
+    "http://localhost:11434/api/generate",
+    json={
+        "model": "llama3",
+        "prompt": prompt,
+        "stream": False
+    },
+    timeout=30
+)
 
-    elif service in ["mysql", "postgresql"]:
-        explanation += (
-            "Ein offen erreichbarer Datenbankdienst ist sicherheitsrelevant. "
-            "Es sollte geprüft werden, ob der Zugriff eingeschränkt und sauber authentifiziert ist."
-        )
+        result = response.json()
+        return result["response"].strip()
 
-    elif service in ["netbios-ssn", "microsoft-ds"]:
-        explanation += (
-            "SMB-Dienste können Informationen über Freigaben und Benutzer preisgeben. "
-            "Im Lab sollte geprüft werden, ob Gastzugriff oder offene Shares vorhanden sind."
-        )
-
-    else:
-        explanation += (
-            "Der Dienst sollte dokumentiert und bei Bedarf manuell weiter untersucht werden."
-        )
-
-    return explanation
+    except Exception as e:
+        return f"KI Fehler: {e}"
