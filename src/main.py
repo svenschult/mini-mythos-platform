@@ -4,17 +4,22 @@ from report import create_markdown_report
 
 
 def main():
-    input_file = "scans/example_nmap.txt"
-    output_file = "reports/report.md"
+    input_file = "scans/metasploitable_scan.txt"
+    output_file = "reports/metasploitable_report.md"
 
-    print("[+] Mini-Mythos startet...")
+    print("[+] Mini-Mythos Version 2 startet...")
     print(f"[+] Lese Scan-Datei: {input_file}")
 
     findings = parse_nmap_file(input_file)
-    analyzed_findings = analyze_findings(findings)
 
+    if not findings:
+        print("[!] Keine offenen Dienste gefunden.")
+        return
+
+    analyzed_findings = analyze_findings(findings)
     create_markdown_report(analyzed_findings, output_file)
 
+    print(f"[+] Gefundene Dienste: {len(analyzed_findings)}")
     print(f"[+] Report erstellt: {output_file}")
 
 
