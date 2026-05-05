@@ -2,7 +2,7 @@ import os
 from parser import parse_nmap_file
 from analyzer import analyze_findings
 from report import create_markdown_report
-
+from setup_ai import setup_ai
 
 def list_scan_files(scan_dir):
     files = [f for f in os.listdir(scan_dir) if f.endswith(".txt")]
@@ -27,6 +27,8 @@ def choose_scan_file(files):
 
 
 def main():
+    print("[+] Initialisiere KI...")
+    setup_ai()
     scan_dir = "scans"
     report_dir = "reports"
 
