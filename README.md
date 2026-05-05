@@ -41,15 +41,14 @@ Dieses Projekt simuliert einen einfachen Pentest-Workflow und dient als Portfoli
 ## Projektstruktur (Übersicht)
 
 mini-mythos-pentest-assistant
-│
-├── src/        → Kernlogik (Parser, Analyse, KI)
-├── scans/      → Eingabedateien (Nmap Scans)
-├── reports/    → Generierte Reports
-├── docs/       → Dokumentation & Screenshots
-│
-├── README.md
-├── requirements.txt
-└── .gitignore
+
+-src/        → Kernlogik (Parser, Analyse, KI)
+-scans/      → Eingabedateien (Nmap Scans)
+-reports/    → Generierte Reports
+-docs/       → Dokumentation & Screenshots
+-README.md
+-requirements.txt
+-.gitignore
 
 ---
 
