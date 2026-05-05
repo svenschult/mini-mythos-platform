@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from ai_assistant import generate_ai_explanation
 
 def count_risks(findings):
     risk_count = {
@@ -63,6 +63,7 @@ def create_markdown_report(findings, output_path):
         content += f"- Empfehlung: {finding['recommendation']}\n"
         content += f"- Pentest-Hinweis: {finding['pentest_hint']}\n"
         content += f"- Priorität: {finding['priority']}\n\n"
+        content += f"- KI-Erklärung: {generate_ai_explanation(finding)}\n"
 
     content += "## Nächste sinnvolle Schritte\n\n"
     content += "- Ergebnisse manuell validieren\n"
