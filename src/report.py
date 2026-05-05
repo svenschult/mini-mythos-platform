@@ -28,6 +28,13 @@ def create_markdown_report(findings, output_path):
     content += "Metasploitable2 Lab-System\n\n"
 
     content += "## Zusammenfassung\n\n"
+    content += "## Top Ziele (Priorität High/Critical)\n\n"
+
+    for finding in findings:
+        if finding.get("priority") in ["High", "Critical"]:
+            content += f"- Port {finding['port']} ({finding['service']}) → {finding['priority']}\n"
+
+    content += "\n"
     content += f"- Gefundene offene Dienste: {len(findings)}\n"
     content += f"- Critical: {risk_count['Critical']}\n"
     content += f"- High: {risk_count['High']}\n"
@@ -53,7 +60,9 @@ def create_markdown_report(findings, output_path):
             for note in finding["notes"]:
                 content += f"  - {note}\n"
 
-        content += f"- Empfehlung: {finding['recommendation']}\n\n"
+        content += f"- Empfehlung: {finding['recommendation']}\n"
+        content += f"- Pentest-Hinweis: {finding['pentest_hint']}\n"
+        content += f"- Priorität: {finding['priority']}\n\n"
 
     content += "## Nächste sinnvolle Schritte\n\n"
     content += "- Ergebnisse manuell validieren\n"
