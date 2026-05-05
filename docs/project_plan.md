@@ -10,6 +10,7 @@ Das Tool soll:
 - Risiken bewerten
 - Pentest-Hinweise geben
 - Reports generieren
+- KI zur Unterstützung nutzen
 
 Ziel ist ein praxisnahes Portfolio-Projekt im Bereich IT-Security / Pentesting.
 
@@ -19,17 +20,31 @@ Ziel ist ein praxisnahes Portfolio-Projekt im Bereich IT-Security / Pentesting.
 
 Projektname: Mini Mythos Pentest Assistant  
 Technologie: Python  
-Einsatzbereich: Pentesting / IT-Security  
+Einsatzbereich: IT-Security / Pentesting  
 Umgebung: Kali Linux + Metasploitable Lab  
 
 ---
 
-## Projektstruktur
+## Architektur
+
+Das Projekt besteht aus mehreren Modulen:
 
 - Parser → liest Nmap-Scan-Dateien
-- Analyzer → bewertet Risiken
-- Report → erstellt Markdown-Reports
-- AI-Modul → erklärt Findings
+- Analyzer → bewertet Risiken und Prioritäten
+- Report → erstellt strukturierte Reports
+- AI-Modul → generiert KI-Erklärungen
+- Setup-Modul → startet Ollama automatisch und prüft Abhängigkeiten
+
+---
+
+## Funktionsweise
+
+1. Nmap-Scan wird erstellt (extern)
+2. Scan-Datei wird eingelesen
+3. Dienste werden analysiert
+4. Risiken und Prioritäten werden berechnet
+5. KI erstellt zusätzliche Erklärungen
+6. Report wird generiert
 
 ---
 
@@ -46,26 +61,31 @@ Umgebung: Kali Linux + Metasploitable Lab
 - [x] CLI-Auswahl hinzufügen
 - [x] Priorisierung (Top Targets)
 
+### Version 2.2
+- [x] Pentest-Hinweise hinzufügen
+- [x] bekannte Dienste besser bewerten
+
 ### Version 3
 - [x] KI-Modul (lokal)
-- [ ] KI über Ollama integrieren
+- [x] Integration mit Ollama
+- [x] automatische KI-Initialisierung
 
 ---
 
 ## Erweiterungen (geplant)
 
-- Web-Oberfläche
+- Web-Oberfläche (Flask)
 - automatischer Nmap-Scan
 - erweiterte Schwachstellen-Erkennung
-- Export als PDF
 - mehrere Zielsysteme
+- Export als PDF
 
 ---
 
 ## Risiken
 
-- falsche Risikobewertung durch einfache Logik
-- KI liefert ungenaue Ergebnisse
+- einfache Heuristik kann falsche Bewertungen liefern
+- KI kann ungenaue oder allgemeine Antworten geben
 - Abhängigkeit von externen Tools (Nmap, Ollama)
 
 ---
@@ -75,7 +95,9 @@ Umgebung: Kali Linux + Metasploitable Lab
 Das Projekt dient als Lern- und Demonstrationsprojekt.
 
 Es zeigt:
+
 - Python-Kenntnisse
 - Verständnis für IT-Security
 - strukturiertes Arbeiten
-- Umgang mit Analyse-Tools
+- Nutzung von Analyse-Tools
+- Integration von KI in reale Workflows
