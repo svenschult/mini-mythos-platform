@@ -11,6 +11,7 @@ Das Tool soll:
 - Pentest-Hinweise geben
 - Reports generieren
 - KI zur Unterstützung nutzen
+- Zielsysteme automatisch erkennen
 
 Ziel ist ein praxisnahes Portfolio-Projekt im Bereich IT-Security / Pentesting.
 
@@ -21,7 +22,7 @@ Ziel ist ein praxisnahes Portfolio-Projekt im Bereich IT-Security / Pentesting.
 Projektname: Mini Mythos Pentest Assistant  
 Technologie: Python  
 Einsatzbereich: IT-Security / Pentesting  
-Umgebung: Kali Linux + Metasploitable Lab  
+Umgebung: Kali Linux + Metasploitable / Windows Server Lab  
 
 ---
 
@@ -34,17 +35,20 @@ Das Projekt besteht aus mehreren Modulen:
 - Report → erstellt strukturierte Reports
 - AI-Modul → generiert KI-Erklärungen
 - Setup-Modul → startet Ollama automatisch und prüft Abhängigkeiten
+- Target-Parser → erkennt Zielinformationen aus Nmap-Scans
+- Changelog → dokumentiert Versionsänderungen
 
 ---
 
 ## Funktionsweise
 
-1. Nmap-Scan wird erstellt (extern)
+1. Nmap-Scan wird erstellt
 2. Scan-Datei wird eingelesen
 3. Dienste werden analysiert
 4. Risiken und Prioritäten werden berechnet
-5. KI erstellt zusätzliche Erklärungen
-6. Report wird generiert
+5. Zielsystem wird automatisch erkannt
+6. KI erstellt zusätzliche Einschätzungen
+7. Report wird generiert
 
 ---
 
@@ -70,15 +74,21 @@ Das Projekt besteht aus mehreren Modulen:
 - [x] Integration mit Ollama
 - [x] automatische KI-Initialisierung
 
+### Version 3.1
+- [x] automatische Zielerkennung
+- [x] dynamischer Zielsystem-Block
+- [x] Changelog hinzugefügt
+
 ---
 
 ## Erweiterungen (geplant)
 
-- Web-Oberfläche (Flask)
+- modernes Web UI
 - automatischer Nmap-Scan
 - erweiterte Schwachstellen-Erkennung
 - mehrere Zielsysteme
 - Export als PDF
+- Dashboard mit Statistiken
 
 ---
 
@@ -87,6 +97,7 @@ Das Projekt besteht aus mehreren Modulen:
 - einfache Heuristik kann falsche Bewertungen liefern
 - KI kann ungenaue oder allgemeine Antworten geben
 - Abhängigkeit von externen Tools (Nmap, Ollama)
+- lange Antwortzeiten bei großen Scans
 
 ---
 
@@ -101,3 +112,4 @@ Es zeigt:
 - strukturiertes Arbeiten
 - Nutzung von Analyse-Tools
 - Integration von KI in reale Workflows
+- Versionierung und Projektdokumentation
