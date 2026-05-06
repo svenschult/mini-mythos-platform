@@ -1,52 +1,27 @@
 import os
-from parser import parse_nmap_file
+
+from parser import parse_nmap_file, parse_target_info
 from analyzer import analyze_findings
 from report import create_markdown_report
 from setup_ai import setup_ai
 
-def list_scan_files(scan_dir):
-    files = [f for f in os.listdir(scan_dir) if f.endswith(".txt")]
-    return files
-
-
-def choose_scan_file(files):
-    print("\nVerfügbare Scan-Dateien:\n")
-
-    for i, file in enumerate(files):
-        print(f"[{i}] {file}")
-
-    while True:
-        try:
-            choice = int(input("\nWähle eine Datei (Nummer): "))
-            if 0 <= choice < len(files):
-                return files[choice]
-        except:
-            pass
-
-        print("Ungültige Eingabe. Bitte erneut versuchen.")
-
 
 def main():
-    print("[+] Initialisiere KI...")
-    setup_ai()
     scan_dir = "scans"
     report_dir = "reports"
 
-    print("[+] Mini-Mythos Version 2.1 startet...")
+    print("[+] Initialisiere KI...")
+    setup_ai()
 
-    files = list_scan_files(scan_dir)
+    print("[+] Mini-Mythos startet...")
 
-    if not files:
-        print("[!] Keine Scan-Dateien gefunden.")
-        return
+    input_file = "scan.txt"
+    input_path = os.path.join(scan_dir, input_file)
 
-    selected_file = choose_scan_file(files)
-    input_path = os.path.join(scan_dir, selected_file)
-
-    output_file = selected_file.replace(".txt", "_report.md")
+    output_file = "report.md"
     output_path = os.path.join(report_dir, output_file)
 
-    print(f"\n[+] Analysiere: {selected_file}")
+    print(f"[+] Analysiere: {input_file}")
 
     findings = parse_nmap_file(input_path)
 
@@ -54,8 +29,15 @@ def main():
         print("[!] Keine verwertbaren Daten gefunden.")
         return
 
+    target_info = parse_target_info(input_path)
+
     analyzed_findings = analyze_findings(findings)
-    create_markdown_report(analyzed_findings, output_path)
+
+    create_markdown_report(
+        analyzed_findings,
+        output_path,
+        target_info
+    )
 
     print(f"[+] Report erstellt: {output_path}")
 

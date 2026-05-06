@@ -17,7 +17,7 @@ def count_risks(findings):
     return risk_count
 
 
-def create_markdown_report(findings, output_path):
+def create_markdown_report(findings, output_path, target_info):
     now = datetime.now().strftime("%d.%m.%Y %H:%M")
     risk_count = count_risks(findings)
 
@@ -25,7 +25,10 @@ def create_markdown_report(findings, output_path):
     content += f"Erstellt am: {now}\n\n"
 
     content += "## Zielsystem\n\n"
-    content += "Metasploitable2 Lab-System\n\n"
+    content += f"- Hostname: {target_info['hostname']}\n"
+    content += f"- IP-Adresse: {target_info['ip']}\n"
+    content += f"- Betriebssystem: {target_info['os']}\n"
+    content += f"- MAC/Hersteller: {target_info['mac']}\n\n"
 
     content += "## Zusammenfassung\n\n"
     content += "## Top Ziele (Priorität High/Critical)\n\n"
