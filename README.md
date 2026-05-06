@@ -105,7 +105,8 @@ mini-mythos-pentest-assistant
 ├── docs/       → Dokumentation & Screenshots  
 │  
 ├── README.md  
-├── requirements.txt  
+├── requirements.txt 
+├── CHANGELOG.md 
 └── .gitignore  
 
 ---
