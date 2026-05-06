@@ -2,7 +2,7 @@
 
 Ein Python-basiertes Tool zur Analyse von Nmap-Scans mit automatischer Risikobewertung, Priorisierung und KI-gestützten Erklärungen.
 
-Das Tool nutzt ein lokales KI-Modell über Ollama und richtet sich beim Start automatisch selbst ein.
+Das Tool nutzt ein lokales KI-Modell über Ollama und erkennt Zielsysteme automatisch aus Nmap-Scans.
 
 Dieses Projekt dient als Portfolio-Projekt im Bereich IT-Security / Pentesting.
 
@@ -10,15 +10,20 @@ Dieses Projekt dient als Portfolio-Projekt im Bereich IT-Security / Pentesting.
 
 ## Features
 
-- 🔍 Einlesen von Nmap-Scan-Dateien  
-- 🧠 Analyse offener Ports und Dienste  
+- 🔍 Analyse von Nmap-Scans  
+- 🧠 Automatische Erkennung offener Dienste  
 - ⚠️ Risikobewertung (Low / Medium / High / Critical)  
 - 🎯 Priorisierung von Angriffszielen  
 - 💣 Pentest-Hinweise  
-- 🤖 KI-gestützte Erklärungen (lokal)  
+- 🤖 KI-gestützte Erklärungen über Ollama  
 - ⚙️ Automatischer Start von Ollama  
-- 📦 Automatisches Laden des KI-Modells  
-- 📄 Report-Erstellung  
+- 📦 Automatische Modellprüfung  
+- 🖥️ Erkennung von:
+  - Hostname
+  - IP-Adresse
+  - Betriebssystem
+  - MAC-Adresse / Hersteller
+- 📄 Automatische Report-Erstellung  
 
 ---
 
@@ -28,7 +33,7 @@ Dieses Projekt dient als Portfolio-Projekt im Bereich IT-Security / Pentesting.
 - Nmap  
 - Ollama  
 
-Download Ollama: https://ollama.com
+Ollama Download: https://ollama.com
 
 ---
 
@@ -36,7 +41,7 @@ Download Ollama: https://ollama.com
 
 Repository klonen:
 
-git clone https://github.com/DEINNAME/mini-mythos-pentest-assistant.git  
+git clone https://github.com/svenschult/mini-mythos-pentest-assistant  
 cd mini-mythos-pentest-assistant  
 
 Abhängigkeiten installieren:
@@ -47,15 +52,21 @@ pip install -r requirements.txt
 
 ## Nutzung
 
-1. Nmap-Scan erstellen:
+### 1. Nmap-Scan erstellen
+
+Beispiel:
 
 nmap -sV -O -oN scan.txt <ZIEL-IP>
 
-2. Scan-Datei in den Ordner scans/ kopieren  
+Die Datei muss anschließend hier liegen:
 
-3. Tool starten:
+scans/scan.txt
 
-python src/main.py  
+---
+
+### 2. Tool starten
+
+python src/main.py
 
 ---
 
@@ -64,10 +75,23 @@ python src/main.py
 Beim Start passiert automatisch:
 
 - Ollama wird gestartet (falls nicht aktiv)  
-- Modell wird geprüft  
+- KI-Modell wird geprüft  
 - Modell wird geladen (falls nötig)  
 
 Keine manuelle Einrichtung erforderlich.
+
+---
+
+## Automatische Zielerkennung
+
+Mini Mythos erkennt automatisch:
+
+- Ziel-IP  
+- Hostname  
+- Betriebssystem  
+- MAC-Adresse / Hersteller  
+
+direkt aus dem Nmap-Scanbericht.
 
 ---
 
@@ -75,10 +99,10 @@ Keine manuelle Einrichtung erforderlich.
 
 mini-mythos-pentest-assistant  
 │  
-├── src/        → Logik (Parser, Analyse, KI, Setup)  
-├── scans/      → Nmap-Dateien  
-├── reports/    → Ergebnisse  
-├── docs/       → Dokumentation  
+├── src/        → Parser, Analyse, KI, Setup  
+├── scans/      → Nmap-Scans  
+├── reports/    → generierte Reports  
+├── docs/       → Dokumentation & Screenshots  
 │  
 ├── README.md  
 ├── requirements.txt  
@@ -94,21 +118,25 @@ mini-mythos-pentest-assistant
 
 Zusätzlich:
 - Priorisierung  
-- KI-Erklärungen  
 - Pentest-Hinweise  
+- KI-Erklärungen  
+- automatische Zielerkennung  
 
 ---
 
 ## Roadmap
 
 - [x] Parser  
-- [x] Analyse  
-- [x] CLI  
+- [x] Risikoanalyse  
+- [x] CLI-Version  
 - [x] KI-Modul  
-- [x] Auto-Setup (Ollama)  
-- [ ] Web UI verbessern  
-- [ ] Auto Nmap Scan  
-- [ ] Erweiterte Analyse  
+- [x] Ollama Integration  
+- [x] automatische Zielerkennung  
+- [x] automatische KI-Initialisierung  
+- [ ] modernes Web UI  
+- [ ] automatischer Nmap-Scan  
+- [ ] erweiterte Schwachstellenanalyse  
+- [ ] PDF-Export  
 
 ---
 
@@ -123,12 +151,12 @@ Zusätzlich:
 
 ## Autor
 
-Sven Schult 
+Sven
 
 ---
 
 ## Hinweis
 
-Dieses Tool dient ausschließlich zu Lern- und Demonstrationszwecken.
+Dieses Tool dient ausschließlich zu Lern- und Demonstrationszwecken in einer kontrollierten Umgebung.
 
-Keine Nutzung gegen fremde Systeme ohne Erlaubnis.
+Keine Nutzung gegen fremde Systeme ohne ausdrückliche Erlaubnis.
