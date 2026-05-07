@@ -5,7 +5,7 @@ from security.analyzer import analyze_findings
 from core.report import create_markdown_report
 from automation.setup_ai import setup_ai
 from security.attack_paths import generate_attack_paths
-
+from infrastructure.network_analysis import analyze_network
 
 def main():
     scan_dir = "scans"
@@ -31,6 +31,7 @@ def main():
         return
 
     target_info = parse_target_info(input_path)
+    network_analysis = analyze_network(target_info)
     analyzed_findings = analyze_findings(findings)
     attack_paths = generate_attack_paths(analyzed_findings)
 
@@ -38,7 +39,8 @@ def main():
     analyzed_findings,
     output_path,
     target_info,
-    attack_paths
+    attack_paths,
+    network_analysis
 )
 
     print(f"[+] Report erstellt: {output_path}")

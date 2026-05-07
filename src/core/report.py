@@ -18,7 +18,7 @@ def count_risks(findings):
     return risk_count
 
 
-def create_markdown_report(findings, output_path, target_info, attack_paths):
+def create_markdown_report(findings, output_path, target_info, attack_paths, network_analysis):
     now = datetime.now().strftime("%d.%m.%Y %H:%M")
     risk_count = count_risks(findings)
 
@@ -30,7 +30,8 @@ def create_markdown_report(findings, output_path, target_info, attack_paths):
     content += "## 1. Executive Summary\n\n"
     content += (
         "Dieser Bericht basiert auf einem Nmap-Service-Scan und bewertet "
-        "offene Dienste, mögliche Angriffspfade und defensive Maßnahmen.\n\n"
+        "offene Dienste, mögliche Angriffspfade, Infrastruktur-Kontext "
+        "und defensive Maßnahmen.\n\n"
     )
     content += f"- Gefundene offene Dienste: {len(findings)}\n"
     content += f"- Critical Findings: {risk_count['Critical']}\n"
@@ -46,7 +47,15 @@ def create_markdown_report(findings, output_path, target_info, attack_paths):
     content += f"- Betriebssystem: {target_info['os']}\n"
     content += f"- MAC/Hersteller: {target_info['mac']}\n\n"
 
-    content += "---\n\n"
+    content += "### Netzwerk-Analyse\n\n"
+
+    if network_analysis:
+        for item in network_analysis:
+            content += f"- {item}\n"
+    else:
+        content += "- Keine Netzwerk-Analyse verfügbar\n"
+
+    content += "\n---\n\n"
 
     content += "## 3. Top Priorities\n\n"
 
