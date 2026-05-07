@@ -1,9 +1,9 @@
 import os
 
-from parser import parse_nmap_file, parse_target_info
-from analyzer import analyze_findings
-from report import create_markdown_report
-from setup_ai import setup_ai
+from core.parser import parse_nmap_file, parse_target_info
+from security.analyzer import analyze_findings
+from core.report import create_markdown_report
+from automation.setup_ai import setup_ai
 
 
 def main():
@@ -13,7 +13,7 @@ def main():
     print("[+] Initialisiere KI...")
     setup_ai()
 
-    print("[+] Mini-Mythos startet...")
+    print("[+] Mini Mythos Platform startet...")
 
     input_file = "scan.txt"
     input_path = os.path.join(scan_dir, input_file)
@@ -30,7 +30,6 @@ def main():
         return
 
     target_info = parse_target_info(input_path)
-
     analyzed_findings = analyze_findings(findings)
 
     create_markdown_report(
