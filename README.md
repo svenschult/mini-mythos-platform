@@ -1,39 +1,90 @@
-# Mini Mythos - Pentest Assistant
+# Mini Mythos Platform
 
-Ein Python-basiertes Tool zur Analyse von Nmap-Scans mit automatischer Risikobewertung, Priorisierung und KI-gestützten Erklärungen.
+Eine modulare Plattform für Infrastructure-, Netzwerk- und Security-Analyse mit Python, Automatisierung und KI-Unterstützung.
 
-Das Tool nutzt ein lokales KI-Modell über Ollama und erkennt Zielsysteme automatisch aus Nmap-Scans.
+Mini Mythos dient als praxisnahes Homelab- und Portfolio-Projekt mit Fokus auf:
 
-Dieses Projekt dient als Portfolio-Projekt im Bereich IT-Security / Pentesting.
+- Infrastruktur verstehen
+- Netzwerke analysieren
+- Security bewerten
+- Angriffswege nachvollziehen
+- defensive Maßnahmen ableiten
+- Automatisierung und Reporting
+
+---
+
+## Projektziel
+
+Mini Mythos soll langfristig zu einer modularen Security- und Infrastructure-Analysis-Plattform ausgebaut werden.
+
+Das Projekt kombiniert:
+
+- Python-Automatisierung
+- Netzwerk-Analyse
+- Security Assessment
+- KI-Unterstützung
+- Reporting & Dokumentation
+- Homelab-Integration
 
 ---
 
 ## Features
 
-- 🔍 Analyse von Nmap-Scans  
-- 🧠 Automatische Erkennung offener Dienste  
-- ⚠️ Risikobewertung (Low / Medium / High / Critical)  
-- 🎯 Priorisierung von Angriffszielen  
-- 💣 Pentest-Hinweise  
-- 🤖 KI-gestützte Erklärungen über Ollama  
-- ⚙️ Automatischer Start von Ollama  
-- 📦 Automatische Modellprüfung  
+- 🔍 Analyse von Nmap-Scans
+- 🧠 automatische Zielerkennung
+- ⚠️ Risikobewertung
+- 🎯 Priorisierung von Angriffszielen
+- 💣 Pentest-Hinweise
+- 🛡️ defensive Empfehlungen
+- 🤖 KI-gestützte Einschätzungen über Ollama
+- ⚙️ automatische KI-Initialisierung
+- 📄 automatische Report-Erstellung
 - 🖥️ Erkennung von:
   - Hostname
   - IP-Adresse
   - Betriebssystem
   - MAC-Adresse / Hersteller
-- 📄 Automatische Report-Erstellung  
+
+---
+
+## Architektur
+
+mini-mythos-platform
+│
+├── src/
+│   ├── main.py
+│   │
+│   ├── core/
+│   │   ├── parser.py
+│   │   ├── report.py
+│   │   └── ai_assistant.py
+│   │
+│   ├── security/
+│   │   └── analyzer.py
+│   │
+│   └── automation/
+│       └── setup_ai.py
+│
+├── scans/
+├── reports/
+├── docs/
+│
+├── README.md
+├── CHANGELOG.md
+├── requirements.txt
+└── .gitignore
 
 ---
 
 ## Voraussetzungen
 
-- Python 3.x  
-- Nmap  
-- Ollama  
+- Python 3.x
+- Nmap
+- Ollama
 
-Ollama Download: https://ollama.com
+Ollama Download:
+
+https://ollama.com
 
 ---
 
@@ -41,12 +92,15 @@ Ollama Download: https://ollama.com
 
 Repository klonen:
 
-git clone https://github.com/svenschult/mini-mythos-pentest-assistant  
-cd mini-mythos-pentest-assistant  
+git clone https://github.com/DEINNAME/mini-mythos-platform
+
+Projektordner öffnen:
+
+cd mini-mythos-platform
 
 Abhängigkeiten installieren:
 
-pip install -r requirements.txt  
+pip install -r requirements.txt
 
 ---
 
@@ -74,9 +128,9 @@ python src/main.py
 
 Beim Start passiert automatisch:
 
-- Ollama wird gestartet (falls nicht aktiv)  
-- KI-Modell wird geprüft  
-- Modell wird geladen (falls nötig)  
+- Ollama wird gestartet
+- KI-Modell wird geprüft
+- Modell wird geladen (falls nötig)
 
 Keine manuelle Einrichtung erforderlich.
 
@@ -86,78 +140,72 @@ Keine manuelle Einrichtung erforderlich.
 
 Mini Mythos erkennt automatisch:
 
-- Ziel-IP  
-- Hostname  
-- Betriebssystem  
-- MAC-Adresse / Hersteller  
+- Ziel-IP
+- Hostname
+- Betriebssystem
+- MAC-Adresse / Hersteller
 
 direkt aus dem Nmap-Scanbericht.
 
 ---
 
-## Projektstruktur
+## Security-Ansatz
 
-mini-mythos-pentest-assistant  
-│  
-├── src/        → Parser, Analyse, KI, Setup  
-├── scans/      → Nmap-Scans  
-├── reports/    → generierte Reports  
-├── docs/       → Dokumentation & Screenshots  
-│  
-├── README.md  
-├── requirements.txt 
-├── CHANGELOG.md 
-└── .gitignore  
+Mini Mythos fokussiert sich nicht nur auf Angriffe, sondern auf das Verständnis kompletter Security-Szenarien.
+
+Die Plattform soll zukünftig:
+
+- mögliche Angreiferpfade simulieren
+- Fehlkonfigurationen erkennen
+- defensive Maßnahmen empfehlen
+- Infrastruktur dokumentieren
 
 ---
 
-## Beispiel Output
+## Geplante Erweiterungen
 
-- FTP → Critical → möglicher Exploit  
-- HTTP → High → Webanalyse starten  
-- SSH → Medium → Passwortprüfung  
-
-Zusätzlich:
-- Priorisierung  
-- Pentest-Hinweise  
-- KI-Erklärungen  
-- automatische Zielerkennung  
-
----
-
-## Roadmap
-
-- [x] Parser  
-- [x] Risikoanalyse  
-- [x] CLI-Version  
-- [x] KI-Modul  
-- [x] Ollama Integration  
-- [x] automatische Zielerkennung  
-- [x] automatische KI-Initialisierung  
-- [ ] modernes Web UI  
-- [ ] automatischer Nmap-Scan  
-- [ ] erweiterte Schwachstellenanalyse  
-- [ ] PDF-Export  
+- modernes Web UI
+- automatischer Nmap-Scan
+- Dashboard
+- Netzwerk-Topologie
+- Vergleich mehrerer Scans
+- PDF-Export
+- erweiterte Schwachstellenanalyse
+- Asset Discovery
+- Hardening-Checks
 
 ---
 
 ## Technologien
 
-- Python  
-- Nmap  
-- Ollama  
-- Requests  
+- Python
+- Nmap
+- Ollama
+- Requests
+- Git / GitHub
+
+---
+
+## Projektstatus
+
+Aktive Entwicklung
+
+Der Fokus liegt aktuell auf:
+- modularer Architektur
+- Security-Analyse
+- Homelab-Integration
+- Automatisierung
 
 ---
 
 ## Autor
 
-Sven
+Sven Schult
 
 ---
 
 ## Hinweis
 
-Dieses Tool dient ausschließlich zu Lern- und Demonstrationszwecken in einer kontrollierten Umgebung.
+Dieses Projekt dient ausschließlich zu Lern-, Analyse- und Demonstrationszwecken in kontrollierten Umgebungen.
 
 Keine Nutzung gegen fremde Systeme ohne ausdrückliche Erlaubnis.
