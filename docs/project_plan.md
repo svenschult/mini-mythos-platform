@@ -1,42 +1,89 @@
-# Projektplan - Mini Mythos Pentest Assistant
+# Projektplan - Mini Mythos Platform
 
-## Ziel des Projekts
+## Projektziel
 
-Entwicklung eines Python-Tools zur automatisierten Analyse von Nmap-Scans.
+Entwicklung einer modularen Plattform zur Analyse von Infrastruktur-, Netzwerk- und Security-Daten mit Python und KI-Unterstützung.
 
-Das Tool soll:
-- offene Ports erkennen
-- Dienste analysieren
-- Risiken bewerten
-- Pentest-Hinweise geben
-- Reports generieren
-- KI zur Unterstützung nutzen
-- Zielsysteme automatisch erkennen
+Mini Mythos soll langfristig als Security- und Infrastructure-Analysis-Plattform dienen und praxisnahe Homelab-Umgebungen analysieren.
 
-Ziel ist ein praxisnahes Portfolio-Projekt im Bereich IT-Security / Pentesting.
+Das Projekt kombiniert:
+
+- Infrastruktur-Analyse
+- Netzwerkverständnis
+- Security Assessment
+- Angriffspfad-Simulation
+- defensive Empfehlungen
+- Automatisierung
+- Reporting & Dokumentation
 
 ---
 
 ## Projektübersicht
 
-Projektname: Mini Mythos Pentest Assistant  
+Projektname: Mini Mythos Platform  
 Technologie: Python  
-Einsatzbereich: IT-Security / Pentesting  
-Umgebung: Kali Linux + Metasploitable / Windows Server Lab  
+Einsatzbereich: Infrastructure & Security Analysis  
+Umgebung:
+- Kali Linux
+- Windows Server
+- Metasploitable
+- VirtualBox Homelab
 
 ---
 
-## Architektur
+## Projektarchitektur
 
-Das Projekt besteht aus mehreren Modulen:
+Das Projekt besteht aus mehreren Modulen.
 
-- Parser → liest Nmap-Scan-Dateien
-- Analyzer → bewertet Risiken und Prioritäten
-- Report → erstellt strukturierte Reports
-- AI-Modul → generiert KI-Erklärungen
-- Setup-Modul → startet Ollama automatisch und prüft Abhängigkeiten
-- Target-Parser → erkennt Zielinformationen aus Nmap-Scans
-- Changelog → dokumentiert Versionsänderungen
+### Core
+- Parser
+- Report Engine
+- KI-Unterstützung
+
+### Security
+- Risikoanalyse
+- Angriffspfade
+- defensive Empfehlungen
+
+### Automation
+- automatische KI-Initialisierung
+- Abhängigkeitsprüfung
+
+### Geplante Infrastructure Module
+- Netzwerk-Analyse
+- Host-Inventory
+- Netzwerk-Topologie
+
+---
+
+## Aktuelle Architektur
+
+mini-mythos-platform
+│
+├── src/
+│   ├── main.py
+│   │
+│   ├── core/
+│   │   ├── parser.py
+│   │   ├── report.py
+│   │   └── ai_assistant.py
+│   │
+│   ├── security/
+│   │   ├── analyzer.py
+│   │   ├── attack_paths.py
+│   │   └── defensive_recommendations.py
+│   │
+│   └── automation/
+│       └── setup_ai.py
+│
+├── scans/
+├── reports/
+├── docs/
+│
+├── README.md
+├── CHANGELOG.md
+├── requirements.txt
+└── .gitignore
 
 ---
 
@@ -44,72 +91,96 @@ Das Projekt besteht aus mehreren Modulen:
 
 1. Nmap-Scan wird erstellt
 2. Scan-Datei wird eingelesen
-3. Dienste werden analysiert
-4. Risiken und Prioritäten werden berechnet
-5. Zielsystem wird automatisch erkannt
-6. KI erstellt zusätzliche Einschätzungen
-7. Report wird generiert
+3. Zielsystem wird erkannt
+4. Dienste werden analysiert
+5. Risiken werden bewertet
+6. Angriffspfade werden simuliert
+7. defensive Maßnahmen werden abgeleitet
+8. KI erstellt zusätzliche Einschätzungen
+9. strukturierter Report wird generiert
 
 ---
 
 ## Meilensteine
 
 ### Version 1
-- [x] Projektstruktur erstellen
-- [x] Nmap-Datei einlesen
+- [x] Projektstruktur erstellt
+- [x] Parser implementiert
 - [x] einfacher Report
 
 ### Version 2
-- [x] reale Scan-Daten integrieren
-- [x] Risikoanalyse verbessern
-- [x] CLI-Auswahl hinzufügen
-- [x] Priorisierung (Top Targets)
-
-### Version 2.2
-- [x] Pentest-Hinweise hinzufügen
-- [x] bekannte Dienste besser bewerten
+- [x] Risikoanalyse erweitert
+- [x] Priorisierung integriert
+- [x] CLI-Version erstellt
 
 ### Version 3
-- [x] KI-Modul (lokal)
-- [x] Integration mit Ollama
+- [x] KI-Modul integriert
+- [x] Ollama-Anbindung
 - [x] automatische KI-Initialisierung
 
 ### Version 3.1
 - [x] automatische Zielerkennung
-- [x] dynamischer Zielsystem-Block
-- [x] Changelog hinzugefügt
+- [x] dynamische Zielsystem-Erkennung
+- [x] erweiterte Infrastrukturinformationen
+
+### Version 4.0
+- [x] modulare Plattform-Architektur
+- [x] Security-Module getrennt
+- [x] Angriffspfad-Simulation
+- [x] defensive Empfehlungen
+- [x] professionelles Reporting
+- [x] Plattform-Rebranding
 
 ---
 
-## Erweiterungen (geplant)
+## Geplante Erweiterungen
 
-- modernes Web UI
+### Infrastructure
+- Netzwerk-Topologie
+- Netzwerksegmentierung
+- Asset Discovery
+- Host-Inventory
+
+### Security
+- laterale Bewegungsanalyse
+- Hardening-Checks
+- erweiterte Angriffspfade
+- Schwachstellen-Korrelation
+
+### Automation
 - automatischer Nmap-Scan
-- erweiterte Schwachstellen-Erkennung
-- mehrere Zielsysteme
-- Export als PDF
-- Dashboard mit Statistiken
+- Vergleich mehrerer Scans
+- geplante Scans
+
+### Reporting
+- PDF-Export
+- Dashboard
+- modernes Web UI
 
 ---
 
 ## Risiken
 
-- einfache Heuristik kann falsche Bewertungen liefern
-- KI kann ungenaue oder allgemeine Antworten geben
-- Abhängigkeit von externen Tools (Nmap, Ollama)
-- lange Antwortzeiten bei großen Scans
+- einfache Heuristiken können Fehlbewertungen erzeugen
+- KI kann ungenaue Einschätzungen liefern
+- externe Abhängigkeiten:
+  - Nmap
+  - Ollama
+- große Scans können lange Analysezeiten verursachen
 
 ---
 
-## Fazit
+## Ziel des Projekts
 
-Das Projekt dient als Lern- und Demonstrationsprojekt.
+Das Projekt dient als:
 
-Es zeigt:
-
-- Python-Kenntnisse
-- Verständnis für IT-Security
-- strukturiertes Arbeiten
-- Nutzung von Analyse-Tools
-- Integration von KI in reale Workflows
-- Versionierung und Projektdokumentation
+- Lernprojekt
+- Homelab-Plattform
+- Portfolio-Projekt
+- Demonstration von:
+  - Python-Kenntnissen
+  - Infrastrukturverständnis
+  - Security-Analyse
+  - Automatisierung
+  - Dokumentation
+  - modularem Softwaredesign
