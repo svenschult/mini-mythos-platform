@@ -17,7 +17,7 @@ def count_risks(findings):
     return risk_count
 
 
-def create_markdown_report(findings, output_path, target_info):
+def create_markdown_report(findings, output_path, target_info, attack_paths):
     now = datetime.now().strftime("%d.%m.%Y %H:%M")
     risk_count = count_risks(findings)
 
@@ -67,6 +67,23 @@ def create_markdown_report(findings, output_path, target_info):
         content += f"- Pentest-Hinweis: {finding['pentest_hint']}\n"
         content += f"- Priorität: {finding['priority']}\n\n"
         content += f"- KI-Erklärung: {generate_ai_explanation(finding)}\n"
+
+    content += "## Angriffspfade & Defensive Empfehlungen\n\n"
+
+    for path in attack_paths:
+        content += f"### {path['service']}\n\n"
+
+        content += "#### Möglicher Angreiferpfad\n\n"
+
+    for step in path["attack_path"]:
+        content += f"- {step}\n"
+
+        content += "\n#### Defensive Maßnahmen\n\n"
+
+    for defense in path["defense"]:
+        content += f"- {defense}\n"
+
+    content += "\n"
 
     content += "## Nächste sinnvolle Schritte\n\n"
     content += "- Ergebnisse manuell validieren\n"

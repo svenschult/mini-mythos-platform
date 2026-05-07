@@ -4,6 +4,7 @@ from core.parser import parse_nmap_file, parse_target_info
 from security.analyzer import analyze_findings
 from core.report import create_markdown_report
 from automation.setup_ai import setup_ai
+from security.attack_paths import generate_attack_paths
 
 
 def main():
@@ -31,12 +32,14 @@ def main():
 
     target_info = parse_target_info(input_path)
     analyzed_findings = analyze_findings(findings)
+    attack_paths = generate_attack_paths(analyzed_findings)
 
     create_markdown_report(
-        analyzed_findings,
-        output_path,
-        target_info
-    )
+    analyzed_findings,
+    output_path,
+    target_info,
+    attack_paths
+)
 
     print(f"[+] Report erstellt: {output_path}")
 
