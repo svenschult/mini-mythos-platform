@@ -4,6 +4,55 @@ Alle wichtigen Änderungen am Projekt werden hier dokumentiert.
 
 ---
 
+## Version 4.0
+
+### Plattform-Restrukturierung
+- Projekt von einem einfachen Pentest-Tool zu einer modularen Security- und Infrastructure-Analysis-Plattform weiterentwickelt
+- modulare Architektur eingeführt
+- neue Modulstruktur aufgebaut:
+  - core
+  - security
+  - automation
+
+### Architektur
+- Parser in eigenes Core-Modul verschoben
+- Report-Engine modularisiert
+- KI-Modul modularisiert
+- Analyzer in Security-Modul ausgelagert
+- automatische KI-Initialisierung in eigenes Automation-Modul verschoben
+
+### Security Features
+- Angriffspfad-Simulation hinzugefügt
+- defensive Empfehlungen integriert
+- Security Findings erweitert
+- Priorisierung verbessert
+
+### Reporting
+- Report komplett restrukturiert
+- neue Bereiche:
+  - Executive Summary
+  - Infrastructure Overview
+  - Security Findings
+  - Attack Path Simulation
+  - Defensive Recommendations
+  - Next Steps
+
+### Infrastruktur-Analyse
+- automatische Zielerkennung verbessert
+- Erkennung von:
+  - Hostname
+  - IP-Adresse
+  - Betriebssystem
+  - MAC-Adresse
+
+### Projektorganisation
+- README vollständig überarbeitet
+- Projektplan aktualisiert
+- Plattform-Fokus definiert
+- Git-Workflow verbessert
+
+---
+
 ## Version 3.1
 
 ### Hinzugefügt
