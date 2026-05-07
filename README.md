@@ -28,22 +28,40 @@ Das Projekt kombiniert:
 
 ---
 
-## Features
+## Kernfunktionen
 
-- 🔍 Analyse von Nmap-Scans
-- 🧠 automatische Zielerkennung
-- ⚠️ Risikobewertung
-- 🎯 Priorisierung von Angriffszielen
-- 💣 Pentest-Hinweise
-- 🛡️ defensive Empfehlungen
-- 🤖 KI-gestützte Einschätzungen über Ollama
-- ⚙️ automatische KI-Initialisierung
-- 📄 automatische Report-Erstellung
-- 🖥️ Erkennung von:
+### Infrastructure Discovery
+- Analyse von Nmap-Scans
+- automatische Zielerkennung
+- Erkennung von:
   - Hostname
   - IP-Adresse
   - Betriebssystem
   - MAC-Adresse / Hersteller
+
+### Security Analysis
+- Risikobewertung
+- Priorisierung kritischer Dienste
+- Security Findings
+- Angriffspfad-Simulation
+
+### Defensive Recommendations
+- Hardening-Empfehlungen
+- defensive Maßnahmen
+- Security-Kontext
+
+### Automation
+- automatische KI-Initialisierung
+- Ollama-Integration
+- automatisierte Report-Erstellung
+
+### Reporting
+- Executive Summary
+- Infrastructure Overview
+- Security Findings
+- Attack Path Simulation
+- Defensive Recommendations
+- Next Steps
 
 ---
 
@@ -60,7 +78,9 @@ mini-mythos-platform
 │   │   └── ai_assistant.py
 │   │
 │   ├── security/
-│   │   └── analyzer.py
+│   │   ├── analyzer.py
+│   │   ├── attack_paths.py
+│   │   └── defensive_recommendations.py
 │   │
 │   └── automation/
 │       └── setup_ai.py
@@ -112,13 +132,13 @@ Beispiel:
 
 nmap -sV -O -oN scan.txt <ZIEL-IP>
 
-Die Datei muss anschließend hier liegen:
+Die Datei anschließend speichern unter:
 
 scans/scan.txt
 
 ---
 
-### 2. Tool starten
+### 2. Plattform starten
 
 python src/main.py
 
@@ -136,43 +156,42 @@ Keine manuelle Einrichtung erforderlich.
 
 ---
 
-## Automatische Zielerkennung
-
-Mini Mythos erkennt automatisch:
-
-- Ziel-IP
-- Hostname
-- Betriebssystem
-- MAC-Adresse / Hersteller
-
-direkt aus dem Nmap-Scanbericht.
-
----
-
 ## Security-Ansatz
 
 Mini Mythos fokussiert sich nicht nur auf Angriffe, sondern auf das Verständnis kompletter Security-Szenarien.
 
-Die Plattform soll zukünftig:
-
-- mögliche Angreiferpfade simulieren
-- Fehlkonfigurationen erkennen
-- defensive Maßnahmen empfehlen
-- Infrastruktur dokumentieren
+Die Plattform analysiert:
+- mögliche Angriffspfade
+- Risiken
+- Fehlkonfigurationen
+- defensive Maßnahmen
+- Infrastruktur-Kontext
 
 ---
 
 ## Geplante Erweiterungen
 
-- modernes Web UI
-- automatischer Nmap-Scan
-- Dashboard
+### Infrastructure
 - Netzwerk-Topologie
-- Vergleich mehrerer Scans
-- PDF-Export
-- erweiterte Schwachstellenanalyse
+- Host-Inventory
+- Netzwerksegmentierung
 - Asset Discovery
+
+### Security
+- erweiterte Angriffspfade
+- Schwachstellenanalyse
 - Hardening-Checks
+- laterale Bewegungsanalyse
+
+### Automation
+- automatischer Nmap-Scan
+- Vergleich mehrerer Scans
+- geplante Scans
+
+### Reporting
+- PDF-Export
+- Dashboard
+- modernes Web UI
 
 ---
 
@@ -190,9 +209,10 @@ Die Plattform soll zukünftig:
 
 Aktive Entwicklung
 
-Der Fokus liegt aktuell auf:
-- modularer Architektur
+Aktueller Fokus:
+- modulare Architektur
 - Security-Analyse
+- Infrastruktur-Verständnis
 - Homelab-Integration
 - Automatisierung
 
@@ -200,7 +220,7 @@ Der Fokus liegt aktuell auf:
 
 ## Autor
 
-Sven Schult
+Sven
 
 ---
 
