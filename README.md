@@ -28,6 +28,30 @@ Das Projekt kombiniert:
 
 ---
 
+## Screenshots
+
+### Plattform-Architektur
+
+![Architecture](docs/screenshots/current/architecture.png)
+
+---
+
+### Security Assessment Report
+
+![Report](docs/screenshots/current/report_v4.png)
+
+---
+
+### Angriffspfad-Simulation
+
+![Attack Paths](docs/screenshots/current/attack_paths.png)
+
+---
+
+### Automatische Zielerkennung
+
+![Target Detection](docs/screenshots/current/target_detection.png)
+
 ## Kernfunktionen
 
 ### Infrastructure Discovery
@@ -112,7 +136,7 @@ https://ollama.com
 
 Repository klonen:
 
-git clone https://github.com/DEINNAME/mini-mythos-platform
+git clone https://github.com/svenschult/mini-mythos-platform
 
 Projektordner öffnen:
 
