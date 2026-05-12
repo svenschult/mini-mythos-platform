@@ -1,19 +1,19 @@
 import os
 
 from core.parser import parse_nmap_file, parse_target_info
+from core.report import create_markdown_report
 from security.analyzer import analyze_findings
 from security.attack_paths import generate_attack_paths
-
 from infrastructure.network_analysis import analyze_network
 from infrastructure.host_inventory import create_host_inventory
-
-from core.report import create_markdown_report
 from automation.setup_ai import setup_ai
 
 
 def main():
     scan_dir = "scans"
     report_dir = "reports"
+
+    os.makedirs(report_dir, exist_ok=True)
 
     print("[+] Initialisiere KI...")
     setup_ai()
@@ -34,25 +34,12 @@ def main():
         print("[!] Keine verwertbaren Daten gefunden.")
         return
 
-    # Zielsystem erkennen
     target_info = parse_target_info(input_path)
-
-    # Security Analyse
     analyzed_findings = analyze_findings(findings)
-
-    # Angriffspfade
     attack_paths = generate_attack_paths(analyzed_findings)
-
-    # Infrastruktur Analyse
     network_analysis = analyze_network(target_info)
+    host_inventory = create_host_inventory(target_info, analyzed_findings)
 
-    # Host Inventory
-    host_inventory = create_host_inventory(
-        target_info,
-        analyzed_findings
-    )
-
-    # Report erstellen
     create_markdown_report(
         analyzed_findings,
         output_path,
