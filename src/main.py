@@ -2,6 +2,11 @@ import os
 
 from core.parser import parse_nmap_file, parse_target_info
 from security.analyzer import analyze_findings
+from security.attack_paths import generate_attack_paths
+
+from infrastructure.network_analysis import analyze_network
+from infrastructure.host_inventory import create_host_inventory
+
 from core.report import create_markdown_report
 from automation.setup_ai import setup_ai
 
@@ -29,13 +34,32 @@ def main():
         print("[!] Keine verwertbaren Daten gefunden.")
         return
 
+    # Zielsystem erkennen
     target_info = parse_target_info(input_path)
+
+    # Security Analyse
     analyzed_findings = analyze_findings(findings)
 
+    # Angriffspfade
+    attack_paths = generate_attack_paths(analyzed_findings)
+
+    # Infrastruktur Analyse
+    network_analysis = analyze_network(target_info)
+
+    # Host Inventory
+    host_inventory = create_host_inventory(
+        target_info,
+        analyzed_findings
+    )
+
+    # Report erstellen
     create_markdown_report(
         analyzed_findings,
         output_path,
-        target_info
+        target_info,
+        attack_paths,
+        network_analysis,
+        host_inventory
     )
 
     print(f"[+] Report erstellt: {output_path}")
