@@ -24,7 +24,8 @@ def create_markdown_report(
     target_info,
     attack_paths,
     network_analysis,
-    host_inventory
+    host_inventory,
+    topology_notes
 ):
     now = datetime.now().strftime("%d.%m.%Y %H:%M")
     risk_count = count_risks(findings)
@@ -79,6 +80,14 @@ def create_markdown_report(
         )
 
     content += "\n---\n\n"
+
+    content += "\n### Topologie-Hinweise\n\n"
+
+    if topology_notes:
+        for note in topology_notes:
+            content += f"- {note}\n"
+    else:
+        content += "- Keine Topologie-Hinweise verfügbar\n\n"
 
     content += "## 3. Top Priorities\n\n"
 

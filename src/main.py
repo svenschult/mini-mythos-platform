@@ -7,6 +7,7 @@ from security.attack_paths import generate_attack_paths
 from infrastructure.network_analysis import analyze_network
 from infrastructure.host_inventory import create_host_inventory
 from automation.setup_ai import setup_ai
+from infrastructure.topology import generate_topology_notes
 
 
 def main():
@@ -39,14 +40,16 @@ def main():
     attack_paths = generate_attack_paths(analyzed_findings)
     network_analysis = analyze_network(target_info)
     host_inventory = create_host_inventory(target_info, analyzed_findings)
-
+    topology_notes = generate_topology_notes(target_info, host_inventory)
+    
     create_markdown_report(
         analyzed_findings,
         output_path,
         target_info,
         attack_paths,
         network_analysis,
-        host_inventory
+        host_inventory,
+        topology_notes
     )
 
     print(f"[+] Report erstellt: {output_path}")
