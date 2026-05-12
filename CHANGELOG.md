@@ -4,6 +4,20 @@ Alle wichtigen Änderungen am Projekt werden hier dokumentiert.
 
 ---
 
+## Version 4.3
+
+### Hinzugefügt
+- `topology.py` hinzugefügt
+- erste Topologie-Hinweise integriert
+- Infrastruktur-Kontext im Report erweitert
+- Hinweise zu privaten Netzbereichen, Homelab-Segmenten und möglichen lateralen Bewegungen
+
+### Verbessert
+- Infrastructure Layer weiter ausgebaut
+- Report um Topologie-Hinweise erweitert
+
+---
+
 ## Version 4.2
 
 ### Hinzugefügt

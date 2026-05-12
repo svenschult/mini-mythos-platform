@@ -51,6 +51,7 @@ Verantwortlich für:
 - Netzwerk-Analyse
 - Host-Inventory
 - Infrastruktur-Kontext
+- Topologie-Hinweise
 
 ### Automation
 Verantwortlich für:
@@ -79,7 +80,8 @@ mini-mythos-platform
 │   │
 │   ├── infrastructure/
 │   │   ├── network_analysis.py
-│   │   └── host_inventory.py
+│   │   ├── host_inventory.py
+│   │   └── topology.py
 │   │
 │   └── automation/
 │       └── setup_ai.py
@@ -106,7 +108,8 @@ mini-mythos-platform
 7. Angriffspfade werden simuliert
 8. defensive Maßnahmen werden abgeleitet
 9. KI erstellt zusätzliche Einschätzungen
-10. strukturierter Report wird generiert
+10. Topologie-Hinweise werden generiert
+11. strukturierter Report wird generiert
 
 ---
 
@@ -150,6 +153,11 @@ mini-mythos-platform
 - [x] Rollen-Erkennung für Hosts
 - [x] offene Dienste werden dokumentiert
 
+### Version 4.3
+- [x] Topologie-Modul integriert
+- [x] Topologie-Hinweise im Report ergänzt
+- [x] Infrastruktur-Kontext erweitert
+
 ---
 
 ## Geplante Erweiterungen
@@ -159,6 +167,7 @@ mini-mythos-platform
 - Netzwerksegmentierung
 - Asset Discovery
 - mehrere Hosts analysieren
+- Infrastruktur-Korrelation
 
 ### Security
 - laterale Bewegungsanalyse
