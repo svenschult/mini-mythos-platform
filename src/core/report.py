@@ -12,6 +12,7 @@ def count_risks(findings):
 
     for finding in findings:
         risk = finding.get("risk", "Low")
+
         if risk in risk_count:
             risk_count[risk] += 1
 
@@ -25,7 +26,8 @@ def create_markdown_report(
     attack_paths,
     network_analysis,
     host_inventory,
-    topology_notes
+    topology_notes,
+    assets
 ):
     now = datetime.now().strftime("%d.%m.%Y %H:%M")
     risk_count = count_risks(findings)
@@ -35,12 +37,14 @@ def create_markdown_report(
 
     content += "---\n\n"
 
+    # Executive Summary
     content += "## 1. Executive Summary\n\n"
     content += (
         "Dieser Bericht basiert auf einem Nmap-Service-Scan und bewertet "
         "offene Dienste, Infrastruktur-Kontext, mögliche Angriffspfade "
         "und defensive Maßnahmen.\n\n"
     )
+
     content += f"- Gefundene offene Dienste: {len(findings)}\n"
     content += f"- Critical Findings: {risk_count['Critical']}\n"
     content += f"- High Findings: {risk_count['High']}\n"
@@ -49,19 +53,23 @@ def create_markdown_report(
 
     content += "---\n\n"
 
+    # Infrastructure Overview
     content += "## 2. Infrastructure Overview\n\n"
     content += f"- Hostname: {target_info['hostname']}\n"
     content += f"- IP-Adresse: {target_info['ip']}\n"
     content += f"- Betriebssystem: {target_info['os']}\n"
     content += f"- MAC/Hersteller: {target_info['mac']}\n\n"
 
+    # Netzwerk-Analyse
     content += "### Netzwerk-Analyse\n\n"
+
     if network_analysis:
         for item in network_analysis:
             content += f"- {item}\n"
     else:
         content += "- Keine Netzwerk-Analyse verfügbar\n"
 
+    # Host Inventory
     content += "\n### Host Inventory\n\n"
     content += f"- Hostname: {host_inventory['hostname']}\n"
     content += f"- IP-Adresse: {host_inventory['ip']}\n"
@@ -79,16 +87,39 @@ def create_markdown_report(
             f"({service['risk']})\n"
         )
 
-    content += "\n---\n\n"
+    # Asset Discovery
+    content += "\n### Asset Discovery\n\n"
 
+    if assets:
+        for asset in assets:
+            content += f"#### {asset['ip']}\n\n"
+            content += f"- Hostname: {asset['hostname']}\n"
+            content += f"- Betriebssystem: {asset['os']}\n"
+
+            content += "- Erkannte Rollen:\n"
+            for role in asset["roles"]:
+                content += f"  - {role}\n"
+
+            content += "- Erkannte Dienste:\n"
+            for service in asset["services"]:
+                content += f"  - {service}\n"
+
+            content += "\n"
+    else:
+        content += "- Keine Assets erkannt.\n"
+
+    # Topologie-Hinweise
     content += "\n### Topologie-Hinweise\n\n"
 
     if topology_notes:
         for note in topology_notes:
             content += f"- {note}\n"
     else:
-        content += "- Keine Topologie-Hinweise verfügbar\n\n"
+        content += "- Keine Topologie-Hinweise verfügbar\n"
 
+    content += "\n---\n\n"
+
+    # Top Priorities
     content += "## 3. Top Priorities\n\n"
 
     top_targets_found = False
@@ -96,13 +127,17 @@ def create_markdown_report(
     for finding in findings:
         if finding.get("priority") in ["High", "Critical"]:
             top_targets_found = True
-            content += f"- Port {finding['port']} ({finding['service']}) → {finding['priority']}\n"
+            content += (
+                f"- Port {finding['port']} "
+                f"({finding['service']}) → {finding['priority']}\n"
+            )
 
     if not top_targets_found:
         content += "Keine High- oder Critical-Prioritäten erkannt.\n"
 
     content += "\n---\n\n"
 
+    # Security Findings
     content += "## 4. Security Findings\n\n"
 
     for finding in findings:
@@ -117,6 +152,7 @@ def create_markdown_report(
 
         if finding.get("notes"):
             content += "- Hinweise:\n"
+
             for note in finding["notes"]:
                 content += f"  - {note}\n"
 
@@ -124,6 +160,7 @@ def create_markdown_report(
 
     content += "---\n\n"
 
+    # Attack Path Simulation
     content += "## 5. Attack Path Simulation\n\n"
 
     if attack_paths:
@@ -140,6 +177,7 @@ def create_markdown_report(
 
     content += "---\n\n"
 
+    # Defensive Recommendations
     content += "## 6. Defensive Recommendations\n\n"
 
     if attack_paths:
@@ -155,6 +193,7 @@ def create_markdown_report(
 
     content += "---\n\n"
 
+    # Next Steps
     content += "## 7. Next Steps\n\n"
     content += "- Ergebnisse manuell validieren\n"
     content += "- Kritische Dienste priorisiert prüfen\n"
@@ -165,6 +204,7 @@ def create_markdown_report(
 
     content += "---\n\n"
 
+    # Hinweis
     content += "## Hinweis\n\n"
     content += (
         "Dieser Bericht dient ausschließlich der Analyse in einer kontrollierten "
