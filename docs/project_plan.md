@@ -52,12 +52,24 @@ Verantwortlich für:
 - Host-Inventory
 - Infrastruktur-Kontext
 - Topologie-Hinweise
+- Asset Discovery
+- Infrastruktur-Korrelation
+- Multi-Host-Unterstützung
 
 ### Automation
 Verantwortlich für:
 - KI-Initialisierung
 - Setup-Routinen
 - zukünftige Automatisierungen
+- automatischer Netzwerk-Scan
+- Dependency Management
+- plattformübergreifende Tool-Erkennung
+
+### Compliance
+- NIS2-orientierte Risikoanalyse
+- PDF-Compliance-Reporting
+- statistische Sicherheitsbewertung
+- Risiko-Visualisierung
 
 ---
 
@@ -73,6 +85,10 @@ mini-mythos-platform
 │   │   ├── report.py
 │   │   └── ai_assistant.py
 │   │
+│   ├── compliance/
+│   │   ├── nis2_mapper.py
+│   │   └── nis2_pdf_report.py
+│   │
 │   ├── security/
 │   │   ├── analyzer.py
 │   │   ├── attack_paths.py
@@ -81,11 +97,13 @@ mini-mythos-platform
 │   ├── infrastructure/
 │   │   ├── network_analysis.py
 │   │   ├── host_inventory.py
+│   │   ├── asset_discovery.py
 │   │   └── topology.py
 │   │
 │   └── automation/
-│       └── setup_ai.py
-│
+│       ├── setup_ai.py
+│       ├── dependency_checker.py
+│       └── nmap_runner.py
 ├── scans/
 ├── reports/
 ├── docs/
@@ -158,6 +176,14 @@ mini-mythos-platform
 - [x] Topologie-Hinweise im Report ergänzt
 - [x] Infrastruktur-Kontext erweitert
 
+### Version 4.4
+- [x] automatischer Netzwerk-Scan integriert
+- [x] Dependency Checker integriert
+- [x] Asset Discovery erweitert
+- [x] NIS2 PDF Reporting integriert
+- [x] statistische Risikoanalyse ergänzt
+- [x] Verlaufshistorie für Reports eingeführt
+- [x] plattformübergreifende Nmap-Erkennung integriert
 ---
 
 ## Geplante Erweiterungen
