@@ -4,6 +4,35 @@ Alle wichtigen Änderungen am Projekt werden hier dokumentiert.
 
 ---
 
+## Version 4.4
+
+### Hinzugefügt
+- automatischer Netzwerk-Scan integriert
+- plattformübergreifende Nmap-Erkennung
+- Dependency Checker integriert
+- Asset Discovery Modul ergänzt
+- NIS2 PDF Reporting hinzugefügt
+- statistische Risiko-Auswertung ergänzt
+- Donut-Chart für NIS2-Risikoverteilung integriert
+- Verlaufshistorie für Reports ergänzt
+- automatische Zeitstempel für Reports eingeführt
+
+### Verbessert
+- Infrastruktur-Analyse erweitert
+- Plattform-Architektur weiter modularisiert
+- Report-Generierung erweitert
+- Cross-Platform-Unterstützung verbessert
+- Benutzerführung im CLI verbessert
+
+### Neue Module
+- `automation/dependency_checker.py`
+- `automation/nmap_runner.py`
+- `infrastructure/asset_discovery.py`
+- `compliance/nis2_mapper.py`
+- `compliance/nis2_pdf_report.py`
+
+---
+
 ## Version 4.3
 
 ### Hinzugefügt
